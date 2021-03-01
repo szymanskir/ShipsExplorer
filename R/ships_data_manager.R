@@ -1,4 +1,4 @@
-ShipsDataManager <- R6Class(
+ShipsDataManager <- R6::R6Class(
   classname = "ShipsDataManager",
   
   private = list(
