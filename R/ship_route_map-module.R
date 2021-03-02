@@ -7,9 +7,7 @@
 
 ship_route_map_ui <- function(id) {
   ns <- NS(id)
-  div(
-    leaflet::leafletOutput(outputId = ns("map"), height = "80vh")
-  )
+  leaflet::leafletOutput(outputId = ns("map"), height = "100%")
 }
 
 ship_route_map_server <- function(id, ship_route) {
@@ -26,7 +24,7 @@ ship_route_map_server <- function(id, ship_route) {
           c(rev(ship_route()$start), rev(ship_route()$stop)),
           byrow = TRUE,
           nrow = 2
-        )
+      )
         
         mean_lat <- (ship_route()$start[1] + ship_route()$stop[1]) / 2
         mean_lon <- (ship_route()$start[2] + ship_route()$stop[2]) / 2

@@ -1,3 +1,7 @@
+body {
+  height: calc(100% - 20px);
+}
+
 .ship-selection-menu-container {
   display: flex;
   flex-direction: column;
