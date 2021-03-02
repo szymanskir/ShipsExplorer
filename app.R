@@ -3,29 +3,10 @@ library(shiny.semantic)
 
 ships_data_manager <- ShipsDataManager$new(data.table::fread("data/ships.csv"))
 
-grid_template <- shiny.semantic::grid_template(
-  default = list(
-    areas = rbind(
-      c("header"),
-      c("map")
-    ),
-    cols_width = c("100%"),
-    rows_height = c("100px", "auto")
-  ),
-  mobile = list(
-    areas = rbind(
-      "header",
-      "map"
-    ),
-    rows_height = c("400px", "auto"),
-    cols_width = c("100%")
-  )
-)
-
 ui <- semanticPage(
   includeCSS("www/styles.css"),
   shiny.semantic::grid(
-    grid_template,
+    create_grid_template(),
     map = ship_route_map_ui("ship_route_map"),
     header = div(
       class = "dashboard-header",

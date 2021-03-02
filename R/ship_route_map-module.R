@@ -40,7 +40,7 @@ ship_route_map_server <- function(id, ship_route) {
             lng2 = ship_route()$stop[2],
             lat2 = ship_route()$stop[1]
           ) %>% 
-          leaflet::addMiniMap(tiles = leaflet::providers$CartoDB.Positron)
+          leaflet::addMiniMap(width = 250, height = 250, tiles = leaflet::providers$CartoDB.Positron)
       })
     }
   )
