@@ -14,32 +14,19 @@ ui <- semanticPage(
       class = "dashboard-header",
       h1(class = "ui header", icon("ship"), div(class = "content", "Ships Explorer")),
       ship_selection_menu_ui("ship_selection"),
-      div(
-        div(
-          class = "ui huge center aligned header distance-banner",
-          icon("ruler"),
-          div(
-            class = "content",
-            textOutput(outputId = "distance"),
-            div(class = "sub header", "Distance")
-          )
-        )
-      ),
+      distance_tile_ui("distance_info")
     )
   )
 )
 
 server <- function(input, output, session) {
   ship_route_map_server("ship_route_map", ship_route)
+  distance_tile_server("distance_info", ship_route)
   ship_selection_data <- ship_selection_menu_server("ship_selection", ships_data_manager)
   
   ship_route <- reactive({
     req(ship_selection_data$ship_name())
     ships_data_manager$get_longest_distance_route(ship_selection_data$ship_name())
-  })
-  
-  output$distance <- renderText({
-    paste0(round(ship_route()$distance, 2), "m")
   })
 }
 
