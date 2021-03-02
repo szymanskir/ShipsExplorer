@@ -2,7 +2,26 @@ body {
   height: calc(100% - 20px);
 }
 
-.ship-selection-menu-container {
+.dashboard-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  justify-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.ship-selection-menu-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 100%;
+  grid-column-gap: 10px;
+  margin: 20px;
+  max-width: 900px;
+}
+
+.distance-banner {
+  min-width: 300px;
+  text-align: left;
 }

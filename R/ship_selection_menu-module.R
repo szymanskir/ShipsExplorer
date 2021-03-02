@@ -1,27 +1,27 @@
 ship_selection_menu_ui <- function(id) {
   ns <- NS(id)
   
-  div(
-    class = "ui raised segment",
-    div(
-      class = "ui header",
-      icon("settings"),
-      div(class = "content", "Select ships")
-    ),
+    # div(
+    #   class = "ui header",
+    #   icon("settings"),
+    #   div(class = "content", "Select ships")
+    # ),
     div(
       class = "ship-selection-menu-container",
-      shiny.semantic::selectInput(
-        inputId = ns("ship_type_dropdown"),
-        label = "Ship type:",
-        choices = ""
+      div(
+        shiny.semantic::selectInput(
+          inputId = ns("ship_type_dropdown"),
+          label = "Ship type:",
+          choices = ""
+        )
       ),
-      
-      shiny.semantic::selectInput(
-        inputId = ns("ship_name_dropdown"),
-        label = "Ship Name:",
-        choices = ""
-      ),
-    )
+      div(
+        shiny.semantic::selectInput(
+          inputId = ns("ship_name_dropdown"),
+          label = "Ship Name:",
+          choices = ""
+        )
+      )
   )
 }
 

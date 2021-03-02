@@ -6,19 +6,18 @@ ships_data_manager <- ShipsDataManager$new(data.table::fread("data/ships.csv"))
 grid_template <- shiny.semantic::grid_template(
   default = list(
     areas = rbind(
-      c("title", "map"),
-      c("controls", "map")
+      c("header"),
+      c("map")
     ),
-    cols_width = c("300px", "1fr"),
-    rows_height = c("50px", "auto")
+    cols_width = c("100%"),
+    rows_height = c("100px", "auto")
   ),
   mobile = list(
     areas = rbind(
-      "title",
-      "map",
-      "controls"
+      "header",
+      "map"
     ),
-    rows_height = c("50px", "100px", "auto", "200px"),
+    rows_height = c("400px", "auto"),
     cols_width = c("100%")
   )
 )
@@ -27,28 +26,23 @@ ui <- semanticPage(
   includeCSS("www/styles.css"),
   shiny.semantic::grid(
     grid_template,
-    title = h1(class = "ui header", icon("ship"), div(class = "content", "Ships Explorer")),
     map = ship_route_map_ui("ship_route_map"),
-    controls = div(
+    header = div(
+      class = "dashboard-header",
+      h1(class = "ui header", icon("ship"), div(class = "content", "Ships Explorer")),
       ship_selection_menu_ui("ship_selection"),
       div(
-        class = "ui raised segment",
         div(
-          class = "ui header",
-          icon("route"),
+          class = "ui huge center aligned header distance-banner",
+          icon("ruler"),
           div(
             class = "content",
-            "Distance"
+            textOutput(outputId = "distance"),
+            div(class = "sub header", "Distance")
           )
-        ),
-        div(
-          class = "ui huge center aligned header",
-          style = "font-size: 4em",
-          textOutput(outputId = "distance")
         )
-      )
-    ),
-    area_styles = list(controls = "margin: 10px", title = "margin: 10px")
+      ),
+    )
   )
 )
 
