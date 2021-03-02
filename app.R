@@ -1,4 +1,4 @@
-library(sass)
+library(magrittr)
 library(shiny.semantic)
 
 ships_data_manager <- ShipsDataManager$new(data.table::fread("data/ships.csv"))
