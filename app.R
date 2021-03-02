@@ -4,7 +4,9 @@ library(shiny.semantic)
 ships_data_manager <- ShipsDataManager$new(data.table::fread("data/ships.csv"))
 
 ui <- semanticPage(
-  includeCSS("www/styles.css"),
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")
+  ),
   shiny.semantic::grid(
     create_grid_template(),
     map = ship_route_map_ui("ship_route_map"),
