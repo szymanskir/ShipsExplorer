@@ -1,11 +1,5 @@
 ship_selection_menu_ui <- function(id) {
   ns <- NS(id)
-  
-    # div(
-    #   class = "ui header",
-    #   icon("settings"),
-    #   div(class = "content", "Select ships")
-    # ),
     div(
       class = "ship-selection-menu-container",
       div(
