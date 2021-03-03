@@ -1,4 +1,4 @@
-testthat("Dropdown fields are updated correctly", {
+test_that("Dropdown fields are updated correctly", {
   ships_data <- data.table::data.table(
     SHIPNAME = c("KAROLI", "KAROLI", "KERLI", "REDUT"),
     ship_type = c("Cargo", "Cargo", "Cargo", "Tug")
