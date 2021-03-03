@@ -1,0 +1,5 @@
+default:
+  dataset: "data/ships.csv"
+  
+test:
+  dataset: "data/ships-sample.csv"

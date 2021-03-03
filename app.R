@@ -1,7 +1,8 @@
 library(magrittr)
 library(shiny.semantic)
 
-ships_data_manager <- ShipsDataManager$new(data.table::fread("data/ships.csv"))
+config <- config::get()
+ships_data_manager <- ShipsDataManager$new(data.table::fread(config$dataset))
 
 ui <- semanticPage(
   tags$head(

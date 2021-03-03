@@ -7,8 +7,8 @@ calculate_geo_distance <- function(x, y) {
 }
 
 calculate_lagged_geo_distance <- function(lat_vec, lon_vec) {
-  checkmate::assert_numeric(lat_vec)
-  checkmate::assert_numeric(lon_vec)
+  checkmate::assert_numeric(lat_vec, min.len = 1)
+  checkmate::assert_numeric(lon_vec, min.len = 1)
   checkmate::assert_true(length(lat_vec) == length(lon_vec))
   
   vec_length <- length(lat_vec)
@@ -22,8 +22,8 @@ calculate_lagged_geo_distance <- function(lat_vec, lon_vec) {
 }
 
 calculate_max_travelled_distance <- function(lat_vec, lon_vec) {
-  checkmate::assert_numeric(lat_vec)
-  checkmate::assert_numeric(lon_vec)
+  checkmate::assert_numeric(lat_vec, min.len = 1)
+  checkmate::assert_numeric(lon_vec, min.len = 1)
   checkmate::assert_true(length(lat_vec) == length(lon_vec))
   
   lagged_geo_distance <- calculate_lagged_geo_distance(lat_vec, lon_vec)
