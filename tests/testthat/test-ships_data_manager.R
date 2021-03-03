@@ -11,10 +11,36 @@ test_that("Ships Data Manager returns all unique available types of ships", {
   expect_equal(result, c("Cargo", "Tug"))
 })
 
+test_that("Ships Data Manager returns types of ships in sorted order", { 
+  ships_data <- data.table::data.table(
+    SHIPNAME = c("KAROLI", "KAROLI", "KERLI", "REDUT"),
+    ship_type = c("Tug", "Tug", "Tug", "Cargo")
+  )
+  
+  ships_data_manager <- ShipsDataManager$new(ships_data)
+  
+  result <- ships_data_manager$get_ship_types()
+  
+  expect_equal(result, c("Cargo", "Tug"))
+})
+
 test_that("Ships Data Manager returns all unique ships of given type", {
   ships_data <- data.table::data.table(
     SHIPNAME = c("KAROLI", "KAROLI", "KERLI", "REDUT"),
     ship_type = c("Cargo", "Cargo", "Cargo", "Tug")
+  )
+  
+  ships_data_manager <- ShipsDataManager$new(ships_data)
+  
+  result <- ships_data_manager$get_ships_of_given_type("Cargo")
+  
+  expect_equal(result, c("KAROLI", "KERLI"))
+})
+
+test_that("Ships Data Manager returns all unique ships of given type in sorted order", {
+  ships_data <- data.table::data.table(
+    SHIPNAME = c("KERLI", "KERLI", "KAROLI"),
+    ship_type = c("Cargo", "Cargo", "Cargo")
   )
   
   ships_data_manager <- ShipsDataManager$new(ships_data)

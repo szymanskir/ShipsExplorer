@@ -10,13 +10,17 @@ ShipsDataManager <- R6::R6Class(
     },
     
     get_ship_types = function() {
-      unique(private$ship_data$ship_type) 
+      private$ship_data$ship_type %>% 
+        unique() %>% 
+        sort()
     },
     
     get_ships_of_given_type = function(type) {
       checkmate::assert_string(type)
       
-      unique(private$ship_data[ship_type == type, SHIPNAME])
+      private$ship_data[ship_type == type, SHIPNAME] %>% 
+        unique() %>% 
+        sort()
     },
     
     get_longest_distance_route = function(ship_name) {
