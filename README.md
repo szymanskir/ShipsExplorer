@@ -1,6 +1,6 @@
 # Ships Explorer
 
-Shiny Explorer is a shiny app that visualizes the longest travelled distance between two consecutive observations. The app is available on shinyapps under the following [link](https://ryszard-szymaski.shinyapps.io/shipsexplorer/).
+Ships Explorer is a shiny app that visualizes the longest travelled distance between two consecutive observations. The app is available on shinyapps under the following [link](https://ryszard-szymaski.shinyapps.io/shipsexplorer/).
 
 
 ![app screenshot](.images/app-screenshot.png)
