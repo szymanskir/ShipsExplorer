@@ -1,27 +1,21 @@
 ship_selection_menu_ui <- function(id) {
   ns <- NS(id)
-  
-  div(
-    class = "ui raised segment",
-    div(
-      class = "ui header",
-      icon("settings"),
-      div(class = "content", "Select ships")
-    ),
     div(
       class = "ship-selection-menu-container",
-      shiny.semantic::selectInput(
-        inputId = ns("ship_type_dropdown"),
-        label = "Ship type:",
-        choices = ""
+      div(
+        shiny.semantic::selectInput(
+          inputId = ns("ship_type_dropdown"),
+          label = "Ship type:",
+          choices = ""
+        )
       ),
-      
-      shiny.semantic::selectInput(
-        inputId = ns("ship_name_dropdown"),
-        label = "Ship Name:",
-        choices = ""
-      ),
-    )
+      div(
+        shiny.semantic::selectInput(
+          inputId = ns("ship_name_dropdown"),
+          label = "Ship Name:",
+          choices = ""
+        )
+      )
   )
 }
 
@@ -36,7 +30,7 @@ ship_selection_menu_server <- function(id, ships_data_manager) {
         ships_data_manager$get_ships_of_given_type(input$ship_type_dropdown)
       })
       
-      updateSelectInput(
+      shiny.semantic::updateSelectInput(
         session = session,
         inputId = "ship_type_dropdown",
         choices = ships_data_manager$get_ship_types()
@@ -45,11 +39,11 @@ ship_selection_menu_server <- function(id, ships_data_manager) {
       observeEvent(ship_names_list(), {
         ship_names <- ship_names_list()
         
-        update_dropdown_input(
+        shiny.semantic::updateSelectInput(
           session = session,
-          input_id = "ship_name_dropdown",
+          inputId = "ship_name_dropdown",
           choices = ship_names,
-          value = ship_names[1]
+          selected = ship_names[1]
         )
       })
       
