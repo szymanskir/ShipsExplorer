@@ -66,7 +66,7 @@ test_that("Ships Data Manager returns the shortest route correctly", {
   
   ships_data_manager <- ShipsDataManager$new(ships_data)
   
-  result <- ships_data_manager$get_longest_distance_route("KAROLI")
+  result <- ships_data_manager$get_longest_distance_route("Cargo", "KAROLI")
   
   expect_true(all(c("start", "stop", "distance") %in% names(result)))
   expect_equal(result$start, c(50, 50))
@@ -89,7 +89,7 @@ test_that("Ships Data Manager returns the shortest route correctly when data is 
   
   ships_data_manager <- ShipsDataManager$new(ships_data)
   
-  result <- ships_data_manager$get_longest_distance_route("KAROLI")
+  result <- ships_data_manager$get_longest_distance_route("Cargo", "KAROLI")
   
   expect_true(all(c("start", "stop", "distance") %in% names(result)))
   expect_equal(result$start, c(50, 50))

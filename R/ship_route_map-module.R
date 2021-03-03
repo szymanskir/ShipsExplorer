@@ -20,23 +20,30 @@ ship_route_map_server <- function(id, ship_route) {
       
       observeEvent(ship_route(), {
         
-        map_data <- matrix(
-          c(rev(ship_route()$start), rev(ship_route()$stop)),
-          byrow = TRUE,
-          nrow = 2
-        )
-        
         # It is assumed that coordinates are vectors of form c(lat, lon)
         start_lat <- ship_route()$start[1]
         start_lon <- ship_route()$start[2]
         stop_lat <- ship_route()$stop[1]
         stop_lon <- ship_route()$stop[2]
         
+        map_data <- data.frame(
+          lat = c(start_lat, stop_lat),
+          lon = c(start_lon, stop_lon),
+          color = c("green", "red")
+        )
+          
         leaflet::leafletProxy("map", data = map_data) %>% 
           leaflet::clearMarkers() %>% 
           leaflet::clearShapes() %>% 
-          leaflet::addMarkers() %>% 
-          leaflet::addPolylines() %>% 
+          leaflet::addAwesomeMarkers(
+            lng = ~lon,
+            lat = ~lat,
+            icon = leaflet::makeAwesomeIcon("circle", library = "fa", markerColor = ~color, iconColor = "white")
+          ) %>% 
+          leaflet::addPolylines(
+            lng = ~lon,
+            lat = ~lat
+          ) %>% 
           leaflet::fitBounds(
             lng1 = start_lon,
             lat1 = start_lat,

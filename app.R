@@ -27,7 +27,11 @@ server <- function(input, output, session) {
   
   ship_route <- reactive({
     req(ship_selection_data$ship_name())
-    ships_data_manager$get_longest_distance_route(ship_selection_data$ship_name())
+    ship_type <- isolate({ ship_selection_data$ship_type() })
+    ships_data_manager$get_longest_distance_route(
+      ship_type,
+      ship_selection_data$ship_name()
+    )
   })
 }
 
