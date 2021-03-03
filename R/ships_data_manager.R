@@ -23,10 +23,11 @@ ShipsDataManager <- R6::R6Class(
         sort()
     },
     
-    get_longest_distance_route = function(ship_name) {
+    get_longest_distance_route = function(ship_type_val, ship_name) {
+      checkmate::assert_string(ship_type_val)
       checkmate::assert_string(ship_name)
       
-      ship_observations <- private$ship_data[SHIPNAME == ship_name, ][order(DATETIME)]
+      ship_observations <- private$ship_data[ship_type == ship_type_val & SHIPNAME == ship_name][order(DATETIME)]
       
       max_distance_info <- calculate_max_travelled_distance(ship_observations$LAT, ship_observations$LON)
       start <- ship_observations[max_distance_info$index, .(LAT, LON)]
